@@ -1,0 +1,7 @@
+control (without control file)
+
+Description:
+All the control*.ctl files are lost and there are NOT any control*.ctl backups.
+
+Purpose:
+Try to recover the control*.ctl files and make sure the DB startup normal.
