@@ -1,0 +1,7 @@
+rollback tablespace ( remove all rollback tablespace and do recovery)
+
+Description:
+
+
+Purpose:
+

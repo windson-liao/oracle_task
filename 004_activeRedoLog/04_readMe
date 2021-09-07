@@ -1,0 +1,7 @@
+active redo log (insert some data, shutdown abort db and delete active redo log and do recover)
+
+Description:
+
+
+Purpose:
+
