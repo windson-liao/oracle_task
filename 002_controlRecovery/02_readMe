@@ -1,16 +1,16 @@
-Updated History:
+⬛️Updated History:
 20210908: Control*.ctl files recovery done, DB startup normally. 
 
-Task:
+⬛️Task:
 control (without control file)
 
-Description:
+⬛️Description:
 All the control*.ctl files are lost and there are NO any control*.ctl backups.
 
-Purpose:
+⬛️Purpose:
 Try to recover the control*.ctl files and make sure the DB startup normal.
 
-Explanation:
+⬛️Explanation:
 1, 02_001.png: Remove all control*.ctl files, then startup the DB. The ORA-00205 error output.
               SQL> startup                                                                                        
               ORACLE instance started.                                                                            
@@ -69,17 +69,19 @@ Explanation:
                 CHARACTER SET AL32UTF8;
                ==================================================================================================
 
-3, 02_003.png:
-4, 02_004.png:
-5, 02_005.png:
-6, 02_006.png:
+3, 02_003.png:  DB startup with nomount mode.
+                Execure the scripts prepared in above step.
+                Control file created.
+4, 02_004.png:  Confirmed the message of [Control file created] is true real actual.
+5, 02_005.png:  Continue to revocery DB with Control file created.
+6, 02_006.png:  DB startup normally.
 
-Confirmed:
+⬛️Confirmed:
 1, The control*.ctls files revovery done.
 2, DB startup normally.
 3, The size recovered control*.ctl files are identical to the origins.
 
-Pending:
+⬛️Pending:
 1, How to compare the recovered control*.ctl file with the origins.
 2, How to use oradebug to check control*.ctl files.
 
