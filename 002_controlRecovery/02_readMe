@@ -79,7 +79,7 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
 ⬛️Confirmed:
 1, The control*.ctls files revovery done.
 2, DB startup normally.
-3, The size recovered control*.ctl files are identical to the origins.
+3, The size of recovered control*.ctl files are identical to the origins.
 
 ⬛️Pending:
 1, How to compare the recovered control*.ctl file with the origins.
