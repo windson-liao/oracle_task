@@ -83,7 +83,33 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
 
 ⬛️Pending:
 1, How to compare the contents of the recovered control*.ctl files with the origins.
-2, How to use oradebug to check control*.ctl files.
+2, How to use oradebug to dump/check control*.ctl files.
+3, The differences of *.dbf files among ~/oradata/ORCLCDB/ and ~/oradata/ORCLCDB/ORCLPDB1 and ~/oradata/ORCLCDB/pdbseed.
+                ~/oradata/ORCLCDB/
+                ==================================================================================================
+                -rw-r-----. 1 oracle oinstall 775954432 Sep  8 05:00 sysaux01.dbf
+                -rw-r-----. 1 oracle oinstall 964698112 Sep  8 04:57 system01.dbf
+                -rw-r-----. 1 oracle oinstall 137371648 Aug 18 22:01 temp01.dbf
+                -rw-r-----. 1 oracle oinstall 293609472 Sep  8 05:00 undotbs01.dbf
+                -rw-r-----. 1 oracle oinstall   5251072 Sep  8 00:22 users01.dbf
+                ==================================================================================================
+                
+                ~/oradata/ORCLCDB/ORCLPDB1
+                ==================================================================================================
+                -rw-r-----. 1 oracle oinstall 377495552 Aug 18 22:28 sysaux01.dbf
+                -rw-r-----. 1 oracle oinstall 293609472 Aug 18 22:28 system01.dbf
+                -rw-r-----. 1 oracle oinstall  37756928 Aug 17 14:00 temp01.dbf
+                -rw-r-----. 1 oracle oinstall 104865792 Aug 18 22:28 undotbs01.dbf
+                -rw-r-----. 1 oracle oinstall   5251072 Aug 18 22:28 users01.dbf
+                ==================================================================================================
+
+                ~/oradata/ORCLCDB/pdbseed
+                ==================================================================================================
+                -rw-r-----. 1 oracle oinstall 346038272 Jul 10 21:32 sysaux01.dbf
+                -rw-r-----. 1 oracle oinstall 283123712 Jul 10 21:32 system01.dbf
+                -rw-r-----. 1 oracle oinstall  37756928 Jul 10 21:32 temp012021-07-10_21-11-43-631-PM.dbf
+                -rw-r-----. 1 oracle oinstall 104865792 Jul 10 21:32 undotbs01.dbf
+                ==================================================================================================
 
 
 All Above.
