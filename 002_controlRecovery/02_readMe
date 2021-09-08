@@ -82,7 +82,7 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
 3, The size of recovered control*.ctl files are identical to the origins.
 
 ⬛️Pending:
-1, How to compare the recovered control*.ctl file with the origins.
+1, How to compare the contents of the recovered control*.ctl file with the origins.
 2, How to use oradebug to check control*.ctl files.
 
 
