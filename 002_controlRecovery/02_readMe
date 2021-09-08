@@ -23,6 +23,7 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
               ORA-00205: error in identifying control file, check alert log for more info 
               
 2, 02_002.png: Analyse the alert_ORCLCDB.log and collect the necessary info to recover the control*.ctl files.
+               alert_ORCLCDB.log
                ==================================================================================================
                   2021-07-10T20:56:50.569852+09:00
                   Successful mount of redo thread 1, with mount id 2848657810
@@ -64,8 +65,7 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
                 '/opt/oracle/oradata/ORCLCDB/sysaux01.dbf',
                 '/opt/oracle/oradata/ORCLCDB/system01.dbf',
                 '/opt/oracle/oradata/ORCLCDB/undotbs01.dbf',
-                '/opt/oracle/oradata/ORCLCDB/users01.dbf',
-                '/opt/oracle/oradata/ORCLCDB/temp01.dbf'
+                '/opt/oracle/oradata/ORCLCDB/users01.dbf'
                 CHARACTER SET AL32UTF8;
                ==================================================================================================
 
