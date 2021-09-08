@@ -47,6 +47,27 @@ Explanation:
                   zeroing database id of data file (0): /opt/oracle/oradata/ORCLCDB/users01.dbf
                   Shutting down ORACLE instance (immediate) (OS id: 9210)
                ==================================================================================================
+               
+               Preparing the script accordingly:
+               ==================================================================================================
+                CREATE CONTROLFILE REUSE DATABASE "ORCLCDB" NORESETLOGS NOARCHIVELOG
+                MAXLOGFILES 16
+                MAXLOGMEMBERS 3
+                MAXDATAFILES 1024
+                MAXINSTANCES 8
+                MAXLOGHISTORY 1
+                LOGFILE
+                GROUP 1 '/opt/oracle/oradata/ORCLCDB/redo01.log' SIZE 200M,
+                GROUP 2 '/opt/oracle/oradata/ORCLCDB/redo02.log' SIZE 200M,
+                GROUP 3 '/opt/oracle/oradata/ORCLCDB/redo03.log' SIZE 200M
+                DATAFILE
+                '/opt/oracle/oradata/ORCLCDB/sysaux01.dbf',
+                '/opt/oracle/oradata/ORCLCDB/system01.dbf',
+                '/opt/oracle/oradata/ORCLCDB/undotbs01.dbf',
+                '/opt/oracle/oradata/ORCLCDB/users01.dbf',
+                '/opt/oracle/oradata/ORCLCDB/temp01.dbf'
+                CHARACTER SET AL32UTF8;
+               ==================================================================================================
 
 3, 02_003.png:
 4, 02_004.png:
@@ -59,6 +80,8 @@ Confirmed:
 3, The size recovered control*.ctl files are identical to the origins.
 
 Pending:
-1, How to use oradebug to check control*.ctl files.
+1, How to compare the recovered control*.ctl file with the origins.
+2, How to use oradebug to check control*.ctl files.
 
+Thank you for reading.
 All Above.
