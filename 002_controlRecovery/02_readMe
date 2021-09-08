@@ -1,3 +1,7 @@
+Updated History:
+20210908: Control*.ctl files recovery done, DB startup normally. 
+
+Task:
 control (without control file)
 
 Description:
@@ -6,5 +10,55 @@ All the control*.ctl files are lost and there are NO any control*.ctl backups.
 Purpose:
 Try to recover the control*.ctl files and make sure the DB startup normal.
 
-Updated History:
-20210908: Control*.ctl files recovery done, DB startup normally. 
+Explanation:
+1, 02_001.png: Remove all control*.ctl files, then startup the DB. The ORA-00205 error output.
+              SQL> startup                                                                                        
+              ORACLE instance started.                                                                            
+                                                                                                    
+              Total System Global Area  767554872 bytes                                                           
+              Fixed Size                  9139512 bytes                                                           
+              Variable Size             511705088 bytes                                                           
+              Database Buffers          239075328 bytes                                                           
+              Redo Buffers                7634944 bytes                                                           
+              ORA-00205: error in identifying control file, check alert log for more info 
+              
+2, 02_002.png: Analyse the alert_ORCLCDB.log and collect the necessary info to recover the control*.ctl files.
+               ==================================================================================================
+                  2021-07-10T20:56:50.569852+09:00
+                  Successful mount of redo thread 1, with mount id 2848657810
+                  Completed: Create controlfile reuse set database "ORCLCDB"
+                  MAXINSTANCES 8
+                  MAXLOGHISTORY 1
+                  MAXLOGFILES 16
+                  MAXLOGMEMBERS 3
+                  MAXDATAFILES 1024
+                  Datafile
+                  '/opt/oracle/oradata/ORCLCDB/sysaux01.dbf',
+                  '/opt/oracle/oradata/ORCLCDB/system01.dbf',
+                  '/opt/oracle/oradata/ORCLCDB/undotbs01.dbf',
+                  '/opt/oracle/oradata/ORCLCDB/users01.dbf'
+                   LOGFILE GROUP 1 ('/opt/oracle/oradata/ORCLCDB/redo01.log') SIZE 200M,
+                  GROUP 2 ('/opt/oracle/oradata/ORCLCDB/redo02.log') SIZE 200M,
+                  GROUP 3 ('/opt/oracle/oradata/ORCLCDB/redo03.log') SIZE 200M RESETLOGS
+                  2021-07-10T20:56:50.693109+09:00
+                  zeroing database id of data file (0): /opt/oracle/oradata/ORCLCDB/system01.dbf
+                  zeroing database id of data file (0): /opt/oracle/oradata/ORCLCDB/sysaux01.dbf
+                  zeroing database id of data file (0): /opt/oracle/oradata/ORCLCDB/undotbs01.dbf
+                  zeroing database id of data file (0): /opt/oracle/oradata/ORCLCDB/users01.dbf
+                  Shutting down ORACLE instance (immediate) (OS id: 9210)
+               ==================================================================================================
+
+3, 02_003.png:
+4, 02_004.png:
+5, 02_005.png:
+6, 02_006.png:
+
+Confirmed:
+1, The control*.ctls files revovery done.
+2, DB startup normally.
+3, The size recovered control*.ctl files are identical to the origins.
+
+Pending:
+1, How to use oradebug to check control*.ctl files.
+
+All Above.
