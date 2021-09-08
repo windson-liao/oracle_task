@@ -72,7 +72,7 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
 3, 02_003.png:  DB startup with nomount mode.
                 Execure the scripts prepared in above step.
                 Control file created.
-4, 02_004.png:  Confirmed the message of [Control file created] is true real actual.
+4, 02_004.png:  Confirmed the message of [Control file created], make sure the recovered control*.ctl files are there.
 5, 02_005.png:  Continue to revocery DB with Control file created.
 6, 02_006.png:  DB startup normally. The ORA-00205 error is gone. No error.
 
