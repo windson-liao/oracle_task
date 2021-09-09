@@ -1,5 +1,6 @@
 ⬛️Updated History:
-20210908: Control*.ctl files recovery done, DB startup normally. 
+20210908: control*.ctl files recovery done, DB startup normally. 
+20210910: gather info NOT from alert_ORCLCDB.log. Thinking section added.
 
 ⬛️Task:
 control (without control file)
@@ -111,6 +112,56 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
                 -rw-r-----. 1 oracle oinstall 104865792 Jul 10 21:32 undotbs01.dbf
                 ==================================================================================================
 
-
+⬛️Thinking:
+In case that there is NO any related info exists in the alert_ORCLCDB.log file, how to recover the control*.ctl file.
+                ll /opt/oracle/oradata/ORCLCDB
+                ==================================================================================================
+                -rw-r-----. 1 oracle oinstall  18726912 Sep  8 16:13 control01.ctl.20210908
+                -rw-r-----. 1 oracle oinstall  18726912 Aug 19 07:32 control01.ctl.BAK
+                -rw-r-----. 1 oracle oinstall  18726912 Aug 19 07:35 control01.ctl.lost
+                -rw-r-----. 1 oracle oinstall  18726912 Sep  8 16:13 control02.ctl.20210908
+                -rw-r-----. 1 oracle oinstall  18726912 Aug 19 07:33 control02.ctl.BAK
+                -rw-r-----. 1 oracle oinstall  18726912 Aug 19 07:35 control02.ctl.lost
+                drwxr-x---. 2 oracle oinstall       104 Jul 10 21:34 ORCLPDB1
+                drwxr-x---. 2 oracle oinstall       111 Jul 10 21:11 pdbseed
+                -rw-r-----. 1 oracle oinstall 209715712 Sep  8 17:54 redo01.log
+                -rw-r-----. 1 oracle oinstall 209715712 Sep  8 18:16 redo02.log
+                -rw-r-----. 1 oracle oinstall 209715712 Sep  8 17:54 redo03.log
+                -rw-r-----. 1 oracle oinstall 775954432 Sep  8 18:16 sysaux01.dbf
+                -rw-r-----. 1 oracle oinstall 964698112 Sep  8 18:12 system01.dbf
+                -rw-r-----. 1 oracle oinstall 137371648 Aug 18 22:01 temp01.dbf
+                -rw-r-----. 1 oracle oinstall 293609472 Sep  8 18:16 undotbs01.dbf
+                -rw-r-----. 1 oracle oinstall   5251072 Sep  8 17:54 users01.dbf
+                ==================================================================================================
+                
+                As for the LOGFILE, we can gather info here, 
+                    1,the SIZE = 209715712/1024/1024 = 200M
+                        LOGFILE
+                          GROUP 1 '/opt/oracle/oradata/ORCLCDB/redo01.log' SIZE 200M,
+                          GROUP 2 '/opt/oracle/oradata/ORCLCDB/redo02.log' SIZE 200M,
+                          GROUP 3 '/opt/oracle/oradata/ORCLCDB/redo03.log' SIZE 200M
+                    2,MAXLOGMEMBERS = 3
+                
+                As for the DATAFILE, we can gather info here too,
+                        DATAFILE
+                          '/opt/oracle/oradata/ORCLCDB/sysaux01.dbf',
+                          '/opt/oracle/oradata/ORCLCDB/system01.dbf',
+                          '/opt/oracle/oradata/ORCLCDB/undotbs01.dbf',
+                          '/opt/oracle/oradata/ORCLCDB/users01.dbf'
+                
+                As for the MAXLOGFILES parameter, which used in the CREATE DATABASE statement determines 
+                the maximum number of groups of redo log files for each database. Group values can range 
+                from 1 to MAXLOGFILES. You can exceed the MAXLOGFILES limit, and the control files expand 
+                as needed. If MAXLOGFILES is not specified for the CREATE DATABASE statement, then the database 
+                uses an operating system specific default value. Hence, I think the default value 16 is OK.
+                  MAXLOGFILES 16
+                
+                As for the MAXDATAFILES parameter,
+                
+                As for the MAXINSTANCES parameter,
+                
+                As for the MAXLOGHISTORY parameter,
+               
+               
 All Above.
 Thank you for reading.
