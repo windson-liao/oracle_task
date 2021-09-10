@@ -1,6 +1,8 @@
 ⬛️Updated History:
-20210908: control*.ctl files recovery done, DB startup normally. 
+20210911: Take server backups before doing the trial and error for control*.ctl files recovery.
 20210910: gather info NOT from alert_ORCLCDB.log. Thinking section added.
+20210908: control*.ctl files recovery done, DB startup normally. 
+
 
 ⬛️Task:
 control (without control file)
@@ -185,6 +187,7 @@ Can oragdebug be used
                  MAXLOGHISTORY 1
                  
                 CHARACTER SET
+                
                
 All Above.
 Thank you for reading.
