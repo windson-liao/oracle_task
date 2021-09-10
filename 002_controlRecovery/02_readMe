@@ -114,6 +114,9 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
 
 ⬛️Thinking:
 In case that there is NO any related info exists in the alert_ORCLCDB.log file, how to recover the control*.ctl file.
+Can oragdebug be used
+※Before doing the recovery of the control*.ctl files, must to take several backups for the target DB, due to the uncertain, we have to try trial and error.
+
                 ll /opt/oracle/oradata/ORCLCDB
                 ==================================================================================================
                 -rw-r-----. 1 oracle oinstall  18726912 Sep  8 16:13 control01.ctl.20210908
@@ -134,34 +137,54 @@ In case that there is NO any related info exists in the alert_ORCLCDB.log file, 
                 -rw-r-----. 1 oracle oinstall   5251072 Sep  8 17:54 users01.dbf
                 ==================================================================================================
                 
-                As for the LOGFILE, we can gather info here, 
+                LOGFILE, we can gather info here, 
                     1,the SIZE = 209715712/1024/1024 = 200M
                         LOGFILE
                           GROUP 1 '/opt/oracle/oradata/ORCLCDB/redo01.log' SIZE 200M,
                           GROUP 2 '/opt/oracle/oradata/ORCLCDB/redo02.log' SIZE 200M,
                           GROUP 3 '/opt/oracle/oradata/ORCLCDB/redo03.log' SIZE 200M
-                    2,MAXLOGMEMBERS = 3
-                
-                As for the DATAFILE, we can gather info here too,
+                    2,MAXLOGMEMBERS
+                       Specify the maximum number of members, or copies, for a redo log file group. Oracle Database uses 
+                       this value to determine how much space to allocate in the control file for the names of redo log files. 
+                       The minimum value is 1. The maximum and default values depend on your operating system
+                       So, if you have enough disk size, the max value 5 is the best. I think 3 is OK.
+                       MAXLOGMEMBERS 3
+                      
+                DATAFILE, we can gather info here too,
                         DATAFILE
                           '/opt/oracle/oradata/ORCLCDB/sysaux01.dbf',
                           '/opt/oracle/oradata/ORCLCDB/system01.dbf',
                           '/opt/oracle/oradata/ORCLCDB/undotbs01.dbf',
                           '/opt/oracle/oradata/ORCLCDB/users01.dbf'
                 
-                As for the MAXLOGFILES parameter, which used in the CREATE DATABASE statement determines 
-                the maximum number of groups of redo log files for each database. Group values can range 
-                from 1 to MAXLOGFILES. You can exceed the MAXLOGFILES limit, and the control files expand 
-                as needed. If MAXLOGFILES is not specified for the CREATE DATABASE statement, then the database 
-                uses an operating system specific default value. Hence, I think the default value 16 is OK.
-                  MAXLOGFILES 16
+                MAXLOGFILES
+                 Specify the maximum number of redo log file groups that can ever be created for the database. 
+                 Oracle Database uses this value to determine how much space to allocate in the control file for the names of redo log files. 
+                 The default, minimum, and maximum values depend on your operating system.
+                 MAXLOGFILES 16
                 
-                As for the MAXDATAFILES parameter,
+                MAXDATAFILES
+                 Specify the initial sizing of the data files section of the control file at CREATE DATABASE or CREATE CONTROLFILE time. 
+                 An attempt to add a file whose number is greater than MAXDATAFILES, but less than or equal to DB_FILES, causes the Oracle 
+                 Database control file to expand automatically so that the data files section can accommodate more files.
+                 The number of data files accessible to your instance is also limited by the initialization parameter DB_FILES.
+                 So, we must count the existing *.dbf data files, then make sure the value of MAXDATAFILES is greater than it.
+                 MAXDATAFILES 1024
                 
-                As for the MAXINSTANCES parameter,
+                MAXINSTANCES
+                 Specify the maximum number of instances that can simultaneously have this database mounted and open. 
+                 This value takes precedence over the value of initialization parameter INSTANCES. The minimum value is 1. 
+                 The maximum value is 1055. The default depends on your operating system.
+                 MAXINSTANCES 8
                 
-                As for the MAXLOGHISTORY parameter,
-               
+                MAXLOGHISTORY
+                 This parameter is useful only if you are using Oracle Database in ARCHIVELOG mode with Oracle Real Application Clusters (Oracle RAC). 
+                 Specify the maximum number of archived redo log files for automatic media recovery of Oracle RAC. The database uses this value to determine 
+                 how much space to allocate in the control file for the names of archived redo log files. The minimum value is 0. The default value is a multiple 
+                 of the MAXINSTANCES value and depends on your operating system. The maximum value is limited only by the maximum size of the control file.
+                 MAXLOGHISTORY 1
+                 
+                CHARACTER SET
                
 All Above.
 Thank you for reading.
