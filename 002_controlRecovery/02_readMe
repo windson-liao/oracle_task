@@ -73,7 +73,7 @@ Try to recover the control*.ctl files and make sure the DB startup normal.
                ==================================================================================================
 
 3, 02_003.png:  DB startup with nomount mode.
-                Execure the scripts prepared in above step.
+                Execute the scripts prepared in above step.
                 Control file created.
 4, 02_004.png:  Confirmed the message of [Control file created], make sure the recovered control*.ctl files are there.
 5, 02_005.png:  Continue to revocery DB with Control file created.
@@ -182,8 +182,8 @@ Can oragdebug be used
                 MAXLOGHISTORY
                  This parameter is useful only if you are using Oracle Database in ARCHIVELOG mode with Oracle Real Application Clusters (Oracle RAC). 
                  Specify the maximum number of archived redo log files for automatic media recovery of Oracle RAC. The database uses this value to determine 
-                 how much space to allocate in the control file for the names of archived redo log files. The minimum value is 0. The default value is a multiple 
-                 of the MAXINSTANCES value and depends on your operating system. The maximum value is limited only by the maximum size of the control file.
+                 how much space to allocate in the control file for the names of archived redo log files. The minimum value is 0. The default value is a 
+                 multiple of the MAXINSTANCES value and depends on your operating system. The maximum value is limited only by the maximum size of the control file.
                  MAXLOGHISTORY 1
                  
                 CHARACTER SET
