@@ -174,7 +174,7 @@ Can oragdebug be used
                  So, we must count the existing *.dbf data files, then make sure the value of MAXDATAFILES is greater than it.
                  MAXDATAFILES 1024
                 
-                MAXINSTANCES（Can be adjusted later）
+                MAXINSTANCES（Can be adjusted later as per）
                  Specify the maximum number of instances that can simultaneously have this database mounted and open. 
                  This value takes precedence over the value of initialization parameter INSTANCES. The minimum value is 1. 
                  The maximum value is 1055. The default depends on your operating system.
@@ -188,9 +188,11 @@ Can oragdebug be used
                  MAXLOGHISTORY 1
                  
                 ★CHARACTER SET
-                 Changing Or Choosing the Database Character Set ( NLS_CHARACTERSET ) (Doc ID 225912.1)
-                 (to read)
-                
+                 1,Read the design documentations and commnunicated with related people to gather info.
+                 2,Find related files, such as csv files with records of table and so on.
+                 3,Guesss based on the location and culture.
+                 4,Try AL32UTF8 character set at first, then the other. Changing Or Choosing the Database Character Set ( NLS_CHARACTERSET ) (Doc ID 225912.1)(to read)
+                 5,If all fail, be honest to accept the fact and tell the true.
                
 All Above.
 Thank you for reading.
