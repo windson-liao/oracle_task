@@ -1,4 +1,5 @@
 ⬛️Updated History:
+20210914: Parameters' comments added.
 20210912: Parameters' comments added.
 20210911: Take server backups before doing the trial and error for control*.ctl files recovery.
 20210910: gather info NOT from alert_ORCLCDB.log. Thinking section added.
@@ -166,7 +167,7 @@ Can oragdebug be used
                  The default, minimum, and maximum values depend on your operating system.
                  MAXLOGFILES 16
                 
-                ★MAXDATAFILES
+               ★MAXDATAFILES
                  Specify the initial sizing of the data files section of the control file at CREATE DATABASE or CREATE CONTROLFILE time. 
                  An attempt to add a file whose number is greater than MAXDATAFILES, but less than or equal to DB_FILES, causes the Oracle 
                  Database control file to expand automatically so that the data files section can accommodate more files.
@@ -187,11 +188,11 @@ Can oragdebug be used
                  multiple of the MAXINSTANCES value and depends on your operating system. The maximum value is limited only by the maximum size of the control file.
                  MAXLOGHISTORY 1
                  
-                ★CHARACTER SET
-                 1,Read the design documentations and commnunicated with related people to gather info.
+               ★CHARACTER SET
+                 1,Read the design documentations and commnunicate with related people to gather info.
                  2,Find related files, such as csv files with records of table and so on.
                  3,Guesss based on the location and culture.
-                 4,Try AL32UTF8 character set at first, then the other. Changing Or Choosing the Database Character Set ( NLS_CHARACTERSET ) (Doc ID 225912.1)(to read)
+                 4,Try AL32UTF8 character set at first, then the others. Changing Or Choosing the Database Character Set ( NLS_CHARACTERSET ) (Doc ID 225912.1)(to read)
                  5,If all fail, be honest to accept the fact and tell the true.
                
 All Above.
