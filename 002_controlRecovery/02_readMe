@@ -188,7 +188,7 @@ Can oragdebug be used
                  multiple of the MAXINSTANCES value and depends on your operating system. The maximum value is limited only by the maximum size of the control file.
                  MAXLOGHISTORY 1
                  
-               ★CHARACTER SET
+               ★CHARACTER SET（It could be gathered from the alert log file, but in case.）
                  1,Read the design documentations and commnunicate with related people to gather info.
                  2,Find related files, such as csv files with records of table and so on.
                  3,Guesss based on the location and culture.
