@@ -1,5 +1,5 @@
 ⬛️Updated History:
-20210915: 
+20210916: Inactive redo log files recovery(UNACHIVED) added. 
 
 
 ⬛️Task:
@@ -17,15 +17,28 @@ Try to recover the lost Inactive redo log files for both scenarios above, and ma
 
 
 ⬛️Explanation:
+1, 03_unArchived_001.png: Find out the Inactive redo log files to be removed.
+
+2, 03_unArchived_002.png: Removed the Inactive redo log files, the unarchived ones.
+
+3, 03_unArchived_003.png: Recover the Group 2 inactive redo log, and confirm the recovered file are there.
+
+4, 03_unArchived_004.png: Recover the Group 3 inactive redo log, and confirm the recovered file are there.
+
+5, 03_unArchived_005.png: DB startup normally. The STATUS of the recoverd inactive redo log files, are changed from INACTIVE to UNUSED.
 
 
 ⬛️Confirmed:
+1, The inactive redo log files are recovery successfully, and their sizes are identical to the origins.
+2, DB startup normally.
+
 
 ⬛️Pending:
+1, How to compare the contents of the recovery inactive redo log files with the origins.
+2, Why the STATUS changed from INACTIVE to UNUSED.
+(Archived redo log recovery.)
 
 ⬛️Thinking:
-
-
 
 
 
