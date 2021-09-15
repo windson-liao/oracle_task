@@ -1,7 +1,33 @@
+⬛️Updated History:
+20210915: 
+
+
+⬛️Task:
 inactive redo log recovery
 
-Description:
+⬛️Scenario:
+1,case Archived: 
+  The redo log files with INACTIVE status are all lost, and there are NO any backups.
+
+2,case Unarchived: 
+  The redo log files with INACTIVE status are all lost, and there are NO any backups.
+
+⬛️Purpose:
+Try to recover the lost Inactive redo log files for both scenarios above, and make sure the DB startup normally.
 
 
-Purpose:
+⬛️Explanation:
 
+
+⬛️Confirmed:
+
+⬛️Pending:
+
+⬛️Thinking:
+
+
+
+
+
+All Above.
+Thank you for reading.
