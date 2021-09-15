@@ -1,4 +1,5 @@
 ⬛️Updated History:
+20210915: Parameters' comments added.
 20210914: Parameters' comments added.
 20210912: Parameters' comments added.
 20210911: Take server backups before doing the trial and error for control*.ctl files recovery.
@@ -9,7 +10,7 @@
 ⬛️Task:
 control (without control file)
 
-⬛️Description:
+⬛️Scenario:
 All the control*.ctl files are lost and there are NO any control*.ctl backups.
 
 ⬛️Purpose:
