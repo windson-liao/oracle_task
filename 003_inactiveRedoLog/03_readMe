@@ -1,4 +1,9 @@
 ⬛️Updated History:
+20210924: 1, readMe comments updated.
+          2, Uploaded 03_ArchiveLog*.png, Inactive redo log recovery under ArchiveLog mode.
+          3, Uploaded 03_noArchiveLog*.png, Inactive redo lof recovery under NoArchiveLog mode.
+          4, Renamed folder OLD to deprecated. 
+          5, Moved 03_unArchived*.png to OLD folder. 
 20210916: Inactive redo log files recovery(UNACHIVED) added. 
 
 
@@ -6,10 +11,10 @@
 inactive redo log recovery
 
 ⬛️Scenario:
-1,case Archived: 
+1,case ArchiveLog: 
   The redo log files with INACTIVE status are all lost, and there are NO any backups.
 
-2,case Unarchived: 
+2,case NoArchiveLog: 
   The redo log files with INACTIVE status are all lost, and there are NO any backups.
 
 ⬛️Purpose:
@@ -17,30 +22,85 @@ Try to recover the lost Inactive redo log files for both scenarios above, and ma
 
 
 ⬛️Explanation:
-1, 03_unArchived_001.png: Find out the Inactive redo log files to be removed.
+1, ArchiveLog Mode
 
-2, 03_unArchived_002.png: Removed the Inactive redo log files, the unarchived ones.
+    #1, 03_ArchiveLog_001.png: To confirm the Database log mode is Archive Mode.
+                               To acquire info of the redo log directory.
+                               To distinguish the status of redo logs which is INACTIVE.
 
-3, 03_unArchived_003.png: Recover the Group 2 inactive redo log, and confirm the recovered file are there.
+    #2, 03_ArchiveLog_002.png: To confirm the redo log files are there really.
+                               To remove the redo log files, "redo01.log" and "redo03.log", because their status are INACTIVE.
+                               To confirm the redo log files are removed really.
 
-4, 03_unArchived_004.png: Recover the Group 3 inactive redo log, and confirm the recovered file are there.
+    #3, 03_ArchiveLog_003.png: Shutdown abort the database and startup then, Get ORA ERROR.
+                                   ORA-03113: end-of-file on communication channel
+                                   Process ID: 31932
+                                   Session ID: 125 Serial number: 41450
+                               Database startup failed.
 
-5, 03_unArchived_005.png: DB startup normally. The STATUS of the recoverd inactive redo log files, are changed from INACTIVE to UNUSED.
+    #4, 03_ArchiveLog_004.png: Exit the DB and login again, STARTUP MOUNT successfully.
+                               Recovery the redo log files with the following commands:
+                                   ALTER DATABASE CLEAR LOGFILE GROUP 1;
+                                   ALTER DATABASE CLEAR LOGFILE GROUP 3;
+                               The redo log files are recovered.
 
+    #5, 03_ArchiveLog_005.png: The STATUS of both the new recovery redo log files are UNUSED.
+                               The log mode is still ARCHIVELOG.
+    
+    #6, 03_ArchiveLog_006.png: Shutdown abort the db, then startup successfully.
+                               One of the new recovery redo log files, it's STATUS is changed to CURRENT, 
+                               which means it's under write in. The another is still UNUSED status.
+                               Check the directory and redo log files are correct
+
+2, NoArchiveLog Mode
+
+    #1, 03_noArchiveLog_001.png: Check the log mode is NOARCHIVELOG.
+                                 Distinguish the STATUS of redo log files which is INACTIVE.
+                                 Find the corresponding target redo log files, "redo02.log" and "redo03.log".
+                                 Remove the above redo log files, and make sure they're removed really. 
+
+    #2, 03_noArchiveLog_002.png: Shutdown abort and startup, Get ORA ERROR.
+                                   ORA-03113: end-of-file on communication channel
+                                   Process ID: 6208
+                                   Session ID: 21 Serial number: 31254
+
+    #3, 03_noArchiveLog_003.png: Exit the DB and login again, STARTUP MOUNT successfully.
+                                 Recovery the redo log files with the following commands:
+                                   ALTER DATABASE CLEAR UNARCHIVED LOGFILE GROUP 2;
+                                   ALTER DATABASE CLEAR UNARCHIVED LOGFILE GROUP 3;
+                                 The redo log files are recovered.
+
+    #4, 03_noArchiveLog_004.png: The new recovery redo log files are both UNUSED status. the log mode is NOARCHIVELOG.
+                                 The database is startup successfully.
+                                 One of the new recovery redo log files, the STATUS is changed to CURRENT, which means
+                                 it's under write in. The another one is UNUSED STATUS.
+
+#🔻🔻🔻🔻🔻🔻🔻🔻The following are Deprecated🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻🔻
+#1, 03_unArchived_001.png: Find out the Inactive redo log files to be removed.
+
+#2, 03_unArchived_002.png: Removed the Inactive redo log files, the unarchived ones.
+
+#3, 03_unArchived_003.png: Recover the Group 2 inactive redo log, and confirm the recovered file are there.
+
+#4, 03_unArchived_004.png: Recover the Group 3 inactive redo log, and confirm the recovered file are there.
+
+#5, 03_unArchived_005.png: DB startup normally. The STATUS of the recoverd inactive redo log files, are changed from INACTIVE to UNUSED.
+🔺🔺🔺🔺🔺🔺🔺🔺The above are Deprecated🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺🔺
 
 ⬛️Confirmed:
-1, The inactive redo log files are recovery successfully, and their sizes are identical to the origins.
-2, DB startup normally.
+1, Under both the ArchiveLog and NoArchiveLog mode, the inactive redo log files are recovery successfully, and their sizes are identical to the origins.
+2, DB startup normally in both ArchiveLog and NoArchiveLog mode, respectively.
 
 
 ⬛️Pending:
 1, How to compare the contents of the recovery inactive redo log files with the origins.
-2, Why the STATUS changed from INACTIVE to UNUSED.
+
+2, Why the STATUS changed from INACTIVE to UNUSED.  => SOLVED
 (Archived redo log recovery.)
+=> [SOLVED]. When the redo log is new added, the status is UNUSED as default.
 
 ⬛️Thinking:
-
-
+The DB backup is very very very important!!!
 
 All Above.
 Thank you for reading.
