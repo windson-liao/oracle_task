@@ -1,7 +1,29 @@
+⬛️Updated History:
+20210924: comments added.
+
+⬛️Task:
 active redo log (insert some data, shutdown abort db and delete active redo log and do recover)
 
-Description:
+⬛️Scenario:
+Create a test table , insert some data and shutdown abort db. Remove the active redo log files.
+Recovery the active redo log files, db startup successfully, and the data recovery.
+(ARCHIVELOG & NOARCHIVELOG)
+
+⬛️Purpose:
+Try to recover the active redo log files, and make sure the DB startup successfully, and the data recovery.
 
 
-Purpose:
+⬛️Explanation:
 
+
+⬛️Confirmed:
+
+
+⬛️Pending:
+
+
+⬛️Thinking:
+
+
+All Above.
+Thank you for reading.
